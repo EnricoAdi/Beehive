@@ -1,0 +1,12 @@
+HOW TO USE
+1. Modal
+pakai flash session
+with("open-modal", " message")
+
+2. Message
+ada error,success,info, warning
+with("tipe", "message")
+
+3. nanoid
+di frontendusercontroller nama functionnya generate random token
+test
