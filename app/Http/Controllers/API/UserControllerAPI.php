@@ -137,7 +137,7 @@ class UserControllerAPI extends Controller
                 'data'      => ""
             ], 401);
         }
-        if($foundUser->STATUS==2){
+        if ($foundUser->STATUS == 2) {
             return response()->json([
                 'success'   => false,
                 'message'   => 'Fitur untuk Beeworker di mobile belum tersedia',
@@ -156,7 +156,13 @@ class UserControllerAPI extends Controller
     public function GetProfile(Request $request)
     {
         $user = User::where("REMEMBER_TOKEN", $request->REMEMBER_TOKEN)->get()->first();
-
+        if ($user == null) {
+            return response()->json([
+                'success'   => false,
+                'message'   => 'Session ended, need to login',
+                'data'      =>  null
+            ], 404);
+        }
         //untuk reformat date
         $user->TANGGAL_LAHIR = date_format(date_create($user->TANGGAL_LAHIR), 'd M Y');
 
@@ -268,9 +274,9 @@ class UserControllerAPI extends Controller
 
     public function PictureUpdate(Request $request)
     {
-        //request input needed picture
+        //request file needed picture
         if (
-            $request->input("picture") == null
+            $request->file("picture") == null
         ) {
             return response()->json([
                 'success'   => false,
@@ -299,7 +305,7 @@ class UserControllerAPI extends Controller
         if ($update) {
             return response()->json([
                 'success'   => true,
-                'message'   => 'Berhasil meng-update profile picture!',
+                'message'   => "$fileName",
                 'data'      => "{}"
             ], 201);
         }
@@ -310,7 +316,8 @@ class UserControllerAPI extends Controller
         ], 500);
     }
 
-    public function topup(Request $request){
+    public function topup(Request $request)
+    {
 
         //request input diperlukan nominal
         if (
@@ -342,9 +349,9 @@ class UserControllerAPI extends Controller
             'message'   => "Berhasil top up",
             'data'      => "{ }"
         ], 201);
-
     }
-    public function nanoIdAPI(){
+    public function nanoIdAPI()
+    {
         //function ini untuk return response berupa sebuah nanoid
         $newkey = UserControllerAPI::GenerateRandomToken(20);
         return response()->json([
