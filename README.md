@@ -13,17 +13,6 @@ Development Team :
 <li>Michael Kevin - 220180521</li>
 </ol>
 
-
-untuk login : <br>
-admin : 
-    email :enricoadiadmin@gmail.com 
-    password: enrico
-farmer : 
-    email :enricoadibuyer@gmail.com 
-    password: enrico
-beeworker : 
-    email :enricoadi49@gmail.com 
-    password: enrico
     
 Fitur unggulan dari kami :
 1. Subscription
